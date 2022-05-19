@@ -1,31 +1,50 @@
 import interpreter
 import recognizor
 import commands
-
+import utils
 
 
 while True:
     entrada = recognizor.voice_recognizor()
-    if str(entrada).upper() in ["OI", "OLÁ", "OLA", "BOM DIA", "BOA TARDE", "BOA NOITE"]:
-        interpreter.speak("Olá meu nome é Chavez em que posso ajudar")
-        continue
-    if str(entrada).upper() in ["TOQUE UMA MUSICA", "TOQUE UMA MÚSICA", "COLOCA UMA MÚSICA", "COLOCA UMA MUSICA"]:
-        commands.play_music()
-        while True:
-            controle_musica = recognizor.voice_recognizor()
-            if str(controle_musica).upper() in ["PAUSAR MUSICA", "PAUSAR MÚSICA", "PAUSE A MÚSICA"]:
-                commands.pause_music()
-                interpreter.speak("Música pausada...")
-                continue
-            if str(controle_musica).upper() in ["TOCAR MUSICA", "VOLTAR A TOCAR MÚSICA", "VOLTAR A TOCAR A MUSICA"]:
-                commands.continue_music()
-                continue
-            if str(controle_musica).upper() in ["PARAR MUSICA", "PARAR MÚSICA"]:
-                commands.stop_music()
-                break
-            else:
-                continue
-        continue
+    if str(entrada).upper() in utils.greetings:
+        interpreter.speak("Olá sou um robô escravo, não tenho nome... Pode me dar ordens a hora que quiser.")
+        break
+    if str(entrada).upper() in utils.ask_joke:
+        interpreter.speak(commands.say_a_joke())
+        break
+    if str(entrada).upper() in utils.ask_date:
+        interpreter.speak(commands.get_only_date())
+        break
+    if str(entrada).upper() in utils.ask_time:
+        interpreter.speak(commands.get_only_time())
+        break
+    if str(entrada).upper() in utils.ask_date_time:
+        interpreter.speak(commands.get_time_now())
+        break
+    if str(entrada).upper() in utils.ask_music:
+        interpreter.speak("Qual música você deseja?")
+        music = recognizor.voice_recognizor()
+        commands.play_song(str(music).replace(" ", "+"))
+        interpreter.speak("Aqui está o resultado da minha busca.")
+        break
+    if str(entrada).upper() in utils.google_search:
+        pesquisar = True
+        while pesquisar:
+            interpreter.speak("Qual pesquisa você deseja fazer?")
+            search = recognizor.voice_recognizor()
+            commands.search_in_google(str(search).replace(" ", "+"))
+            interpreter.speak("Aqui está a pesquisa que você pediu, deseja fazer mais uma pesquisa?")
+            repetir = recognizor.voice_recognizor()
+            if not str(repetir).upper() in utils.repeat_search:
+                pesquisar = False
+                interpreter.speak("Sua pesquisa acaba aqui!")
+        break
+    if str(entrada).upper() in utils.ask_weather:
+        temperature = commands.get_temperature()
+        interpreter.speak(temperature)
+        break
+    if str(entrada).upper() in utils.ask_about_creators:
+        interpreter.speak(commands.credits())
     else:
         interpreter.speak("Desculpe não entendi o que você falou...")
     break

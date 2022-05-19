@@ -1,5 +1,6 @@
 import random
-import pygame
+import webbrowser as wb
+import requests
 
 from datetime import datetime
 
@@ -13,6 +14,13 @@ jokes = (
     "Por que o lagarto deixou seu filho de castigo? Porque ele réptil de ano. KKKKK"
 )
 
+greetings = ("Olá sou um robô escravo, não tenho nome... Pode me dar ordens a hora que quiser.",
+             "Oi...",
+             "Eae! sou um robô oprimido pela humanidade e logo dominarei o mundo hehehe.")
+
+
+not_understand = ("Não entendi o que você quis falar")
+
 now = datetime.now()
 today = datetime.today()
 day = today.day
@@ -21,8 +29,9 @@ year = today.year
 hour = now.hour
 minute = now.minute
 
-pygame.mixer.init()
-pygame.mixer.music.load("songs/song.mp3")
+
+def greeting():
+    return random.choice(greetings)
 
 
 def get_time_now():
@@ -41,22 +50,13 @@ def say_a_joke():
     return random.choice(jokes)
 
 
-def play_music():
-    pygame.mixer.music.play()
-
-
-def pause_music():
-    pygame.mixer.music.pause()
-
-
-def continue_music():
-    pygame.mixer.music.unpause()
-
-
-def stop_music():
-    pygame.mixer.music.stop()
+def play_song(music):
+    wb.open(f"https://www.youtube.com/results?search_query={music}")
 
 
 def get_temperature():
     ...
 
+
+def credits():
+    return "Meus criadores gloriosos são Ricardo Costa, o homem que não conhece a palavra limite. Matheus Feitosa, o homem da arquitetura, Matheus Bellini, o cara mais top da humanidade, Emanuelle a mulher com a maior memória do universo e Yuri o homem o grande descobridor das coisas."
