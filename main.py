@@ -7,7 +7,7 @@ import utils
 while True:
     entrada = recognizor.voice_recognizor()
     if str(entrada).upper() in utils.greetings:
-        interpreter.speak("Olá sou um robô escravo, não tenho nome... Pode me dar ordens a hora que quiser.")
+        interpreter.speak(commands.greeting())
         break
     if str(entrada).upper() in utils.ask_joke:
         interpreter.speak(commands.say_a_joke())
@@ -35,9 +35,14 @@ while True:
             commands.search_in_google(str(search).replace(" ", "+"))
             interpreter.speak("Aqui está a pesquisa que você pediu, deseja fazer mais uma pesquisa?")
             repetir = recognizor.voice_recognizor()
-            if not str(repetir).upper() in utils.repeat_search:
+            if str(repetir).upper() in utils.not_repeat_search:
                 pesquisar = False
                 interpreter.speak("Sua pesquisa acaba aqui!")
+            if str(repetir).upper() in utils.repeat_search:
+                continue
+            else:
+                pesquisar = False
+                interpreter.speak("Não entendi sua resposta... Sua pesquisa acaba aqui!")
         break
     if str(entrada).upper() in utils.ask_weather:
         temperature = commands.get_temperature()

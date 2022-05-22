@@ -1,7 +1,7 @@
+import os
 import random
 import webbrowser as wb
 import requests
-
 from datetime import datetime
 
 months = ("Janeiro", "Fevereiro", "Março", "Abril", "Maio",
