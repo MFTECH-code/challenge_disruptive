@@ -53,3 +53,4 @@ while True:
     else:
         interpreter.speak("Desculpe não entendi o que você falou...")
     break
+

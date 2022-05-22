@@ -55,8 +55,24 @@ def play_song(music):
     wb.open(f"https://www.youtube.com/results?search_query={music}")
 
 
+def search_in_google(search):
+    wb.open(f"https://www.google.com/search?q={search}")
+
+
 def get_temperature():
-    ...
+    api_key = "2870473fa7bef219c3480aad95ad3320"
+    base_URL = "http://api.openweathermap.org/data/2.5/weather?"
+
+    complete_url = base_URL + "appid=" + api_key + "&q=" + 'são paulo'
+    response = requests.get(complete_url)
+    x = response.json()
+
+    if x["cod"] != 404:
+        y = x["main"]
+        temp = y["temp"]
+        celsius = temp - 273.15
+
+    return f"Hoje está fazendo {celsius:.1f} graus celsius em São Paulo"
 
 
 def credits():
