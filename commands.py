@@ -11,7 +11,8 @@ jokes = (
     "Quando eu tiver uma ovelha, vou chamá-la de Rover. Assim, quando",
     "eu tosá-la, poderei dizer que tenho lã de Rover. KKKKK",
     "Eu tomo café. A Cláudia, leite. Eu tomo gelado. O Clark, Kent. KKKKK",
-    "Por que o lagarto deixou seu filho de castigo? Porque ele réptil de ano. KKKKK"
+    "Por que o lagarto deixou seu filho de castigo? Porque ele réptil de ano. KKKKK",
+    "Sabe o que uma impressora falou para outra? Esse papel é seu ou é impressão minha? KKKKK"
 )
 
 greetings = ("Olá sou um robô escravo, não tenho nome... Pode me dar ordens a hora que quiser.",
