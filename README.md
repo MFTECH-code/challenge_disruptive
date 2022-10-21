@@ -1,1 +1,1 @@
-# Chatbot feito em python
+# Chatbot feito em python e reconhecimento facial
